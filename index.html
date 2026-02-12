@@ -156,15 +156,15 @@ button:hover {
   <p id="response"></p>
 </section>
 
-<!-- Question Section -->
-<section id="question">
-  <h1>Blessing…</h1>
-  <h2>Will you be my Valentine?</h2>
-  <button onclick="sayYes()">YES 💗</button>
-  <button id="noBtn" onmouseover="moveNo()">NO 🙈</button>
-  <p id="response"></p>
-</section>  
-  
+<!-- Valentine Section (hidden initially) -->
+<section id="valentine" style="display:none;">
+  <h1>Cherry… 💖</h1>
+  <h2>Now… will you be my Valentine?</h2>
+  <button onclick="sayValentineYes()">YES 😍</button>
+  <button onclick="sayValentineNo()">NO 😢</button>
+  <p id="valentineResponse"></p>
+</section>
+
 <script>
 // Start site after overlay tap
 function startSite() {
@@ -210,7 +210,7 @@ function moveNo() {
   btn.style.top = Math.random() * 80 + "%";
 }
 
-// YES Response
+// Girlfriend YES Response
 function sayYes() {
   document.getElementById("response").innerHTML =
   "Hehehehehe 😌 That’s supposed to be my line… but I’ll let you have this one. You just made Buba the happiest. Officially yours, Samuel 💕";
@@ -220,11 +220,38 @@ function sayYes() {
     spread: 100,
     origin: { y: 0.6 }
   });
+
+  // Reveal Valentine section after 2 seconds
+  setTimeout(() => {
+    document.getElementById("valentine").style.display = "block";
+    document.getElementById("valentine").scrollIntoView({ behavior: "smooth" });
+  }, 2000);
 }
+
+// Valentine YES Response
+function sayValentineYes() {
+  document.getElementById("valentineResponse").innerHTML =
+    "Yesss 😍 You just made Buba the happiest Valentine ever! 💖🍫🌹";
+
+  confetti({
+    particleCount: 250,
+    spread: 120,
+    origin: { y: 0.5 }
+  });
+}
+
+// Valentine NO Response
+function sayValentineNo() {
+  document.getElementById("valentineResponse").innerHTML =
+    "Aww… I’ll forgive you… but I’ll still be your Valentine someday 😉💖";
+}
+
+// Move NO button on hover
 </script>
 
 </body>
 </html>
+
 
 
 
