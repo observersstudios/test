@@ -1,133 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cherry & Buba</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-<style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #ffc0cb, #ff99cc);
-  color: white;
-  text-align: center;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-section {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-h1, h2 {
-  margin-bottom: 20px;
-}
-
-button {
-  padding: 12px 25px;
-  border: none;
-  border-radius: 25px;
-  background: white;
-  color: #ff4da6;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  margin: 10px;
-}
-
-button:hover {
-  transform: scale(1.1);
-}
-
-.floating-hearts {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.heart {
-  position: absolute;
-  bottom: -20px;
-  font-size: 20px;
-  animation: float 6s linear infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-100vh); opacity: 0; }
-}
-
-#noBtn {
-  position: relative;
-}
-</style>
-</head>
+<body>
 
 <!-- Background Music -->
 <audio id="bgMusic" loop>
-  <source src="her.m4a.mp4" type="audio/mp4">
+  <source src="her.m4a" type="audio/mp4">
 </audio>
-  
-<body>
+
+<!-- Tap-to-Start Overlay for mobile -->
+<div id="startOverlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,192,203,0.95);display:flex;justify-content:center;align-items:center;z-index:9999;flex-direction:column;">
+  <h1 style="color:white; margin-bottom:20px;">Hey Cherry 🍒</h1>
+  <button style="padding:15px 30px; font-size:18px; border:none; border-radius:25px; background:white; color:#ff4da6;" onclick="startSite()">Tap to start 💗</button>
+</div>
 
 <div class="floating-hearts"></div>
 
-<!-- First Section with Typing Effect -->
-<section>
+<!-- First Section -->
+<section id="firstSection">
   <h1 id="typing"></h1>
   <p id="subtext" style="display:none;">(yes, you… don’t hehehehe and close this)</p>
   <p id="subtext2" style="display:none;">Buba made something for you.</p>
   <a href="#story">
-    <button id="startBtn" onclick="startMusic()">Okay fine, I’ll click 💗</button>
+    <button id="startBtn" style="display:none;">Okay fine, I’ll click 💗</button>
   </a>
 </section>
 
-<!-- Story Section -->
-<section id="story">
-  <h2>How We Got Here...</h2>
-  <p>You’re cool.</p>
-  <p>You’re goofy.</p>
-  <p>You’re lovely.</p>
-  <p>And somehow… you became my favorite person.</p>
-  <p>Every time you say “hehehehe” I already know I’m finished.</p>
-  <p>And every time I try to say something smooth,</p>
-  <p>you hit me with “That’s supposed to be my line.”</p>
-  <p>Which honestly… is unfair.</p>
-  <a href="#realtalk"><button>Wait… there’s more? 💌</button></a>
-</section>
-
-<!-- Real Talk Section -->
-<section id="realtalk">
-  <h2>Cherry…</h2>
-  <p>I like you.</p>
-  <p>Not small like.</p>
-  <p>Not medium like.</p>
-  <p>Big like.</p>
-  <p>The kind of like that makes me want to put effort.</p>
-  <p>So here I am… doing the most.</p>
-  <a href="#question"><button>Okay Buba, ask it 😌</button></a>
-</section>
-
-<!-- Question Section -->
-<section id="question">
-  <h1>Blessing…</h1>
-  <h2>Will you be my girlfriend?</h2>
-  <button onclick="sayYes()">YES 💗</button>
-  <button id="noBtn" onmouseover="moveNo()">NO 🙈</button>
-  <p id="response"></p>
-</section>
+<!-- Rest of your sections... story, realtalk, question, same as before -->
 
 <script>
+// Function to start the site (overlay tap)
+function startSite() {
+  // Play music
+  document.getElementById("bgMusic").play();
+
+  // Hide overlay
+  document.getElementById("startOverlay").style.display = "none";
+
+  // Start typing effect
+  typeEffect();
+}
+
 // Typing Effect
 const text = "Hey Cherry 🍒";
 let index = 0;
@@ -142,13 +52,6 @@ function typeEffect() {
     document.getElementById("subtext2").style.display = "block";
     document.getElementById("startBtn").style.display = "inline-block";
   }
-}
-
-window.onload = typeEffect;
-
-// Music Play Function
-function startMusic() {
-  document.getElementById("bgMusic").play();
 }
 
 // Floating Hearts
@@ -184,8 +87,3 @@ function sayYes() {
   });
 }
 </script>
-
-</body>
-</html>
-
-
