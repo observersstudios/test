@@ -76,19 +76,23 @@ button:hover {
 <body>
 
 <!-- Background Music -->
-<iframe width="0" height="0" 
-src="https://youtu.be/f5-IY_Ja1RM?si=5ME4UcUPuJ-FKZzw"
-frameborder="0" allow="autoplay"></iframe>
+<audio id="bgMusic" loop>
+  <source src="her.m4a" type="audio/mp4">
+</audio>
 
 <div class="floating-hearts"></div>
 
+<!-- First Section with Typing Effect -->
 <section>
-  <h1>Hey Cherry 🍒</h1>
-  <p>(yes, you… don’t hehehehe and close this)</p>
-  <p>Buba made something for you.</p>
-  <a href="#story"><button>Okay fine, I’ll click 💗</button></a>
+  <h1 id="typing"></h1>
+  <p id="subtext" style="display:none;">(yes, you… don’t hehehehe and close this)</p>
+  <p id="subtext2" style="display:none;">Buba made something for you.</p>
+  <a href="#story">
+    <button id="startBtn" style="display:none;" onclick="startMusic()">Okay fine, I’ll click 💗</button>
+  </a>
 </section>
 
+<!-- Story Section -->
 <section id="story">
   <h2>How We Got Here...</h2>
   <p>You’re cool.</p>
@@ -102,6 +106,7 @@ frameborder="0" allow="autoplay"></iframe>
   <a href="#realtalk"><button>Wait… there’s more? 💌</button></a>
 </section>
 
+<!-- Real Talk Section -->
 <section id="realtalk">
   <h2>Cherry…</h2>
   <p>I like you.</p>
@@ -113,6 +118,7 @@ frameborder="0" allow="autoplay"></iframe>
   <a href="#question"><button>Okay Buba, ask it 😌</button></a>
 </section>
 
+<!-- Question Section -->
 <section id="question">
   <h1>Blessing…</h1>
   <h2>Will you be my girlfriend?</h2>
@@ -122,7 +128,30 @@ frameborder="0" allow="autoplay"></iframe>
 </section>
 
 <script>
-// Floating hearts
+// Typing Effect
+const text = "Hey Cherry 🍒";
+let index = 0;
+
+function typeEffect() {
+  if (index < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeEffect, 100);
+  } else {
+    document.getElementById("subtext").style.display = "block";
+    document.getElementById("subtext2").style.display = "block";
+    document.getElementById("startBtn").style.display = "inline-block";
+  }
+}
+
+window.onload = typeEffect;
+
+// Music Play Function
+function startMusic() {
+  document.getElementById("bgMusic").play();
+}
+
+// Floating Hearts
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
@@ -135,7 +164,7 @@ function createHeart() {
 }
 setInterval(createHeart, 500);
 
-// Move NO button
+// Move NO Button
 function moveNo() {
   const btn = document.getElementById("noBtn");
   btn.style.position = "absolute";
@@ -143,7 +172,7 @@ function moveNo() {
   btn.style.top = Math.random() * 80 + "%";
 }
 
-// YES response
+// YES Response
 function sayYes() {
   document.getElementById("response").innerHTML =
   "Hehehehehe 😌 That’s supposed to be my line… but I’ll let you have this one. You just made Buba the happiest. Officially yours, Samuel 💕";
