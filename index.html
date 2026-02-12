@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cherry & Buba</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #ffc0cb, #ff99cc);
+  color: white;
+  text-align: center;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+h1, h2 {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: white;
+  color: #ff4da6;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin: 10px;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.floating-hearts {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+#noBtn {
+  position: relative;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<iframe width="0" height="0" 
+src="https://youtu.be/f5-IY_Ja1RM?si=5ME4UcUPuJ-FKZzw"
+frameborder="0" allow="autoplay"></iframe>
+
+<div class="floating-hearts"></div>
+
+<section>
+  <h1>Hey Cherry 🍒</h1>
+  <p>(yes, you… don’t hehehehe and close this)</p>
+  <p>Buba made something for you.</p>
+  <a href="#story"><button>Okay fine, I’ll click 💗</button></a>
+</section>
+
+<section id="story">
+  <h2>How We Got Here...</h2>
+  <p>You’re cool.</p>
+  <p>You’re goofy.</p>
+  <p>You’re lovely.</p>
+  <p>And somehow… you became my favorite person.</p>
+  <p>Every time you say “hehehehe” I already know I’m finished.</p>
+  <p>And every time I try to say something smooth,</p>
+  <p>you hit me with “That’s supposed to be my line.”</p>
+  <p>Which honestly… is unfair.</p>
+  <a href="#realtalk"><button>Wait… there’s more? 💌</button></a>
+</section>
+
+<section id="realtalk">
+  <h2>Cherry…</h2>
+  <p>I like you.</p>
+  <p>Not small like.</p>
+  <p>Not medium like.</p>
+  <p>Big like.</p>
+  <p>The kind of like that makes me want to put effort.</p>
+  <p>So here I am… doing the most.</p>
+  <a href="#question"><button>Okay Buba, ask it 😌</button></a>
+</section>
+
+<section id="question">
+  <h1>Blessing…</h1>
+  <h2>Will you be my girlfriend?</h2>
+  <button onclick="sayYes()">YES 💗</button>
+  <button id="noBtn" onmouseover="moveNo()">NO 🙈</button>
+  <p id="response"></p>
+</section>
+
+<script>
+// Floating hearts
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+  document.querySelector(".floating-hearts").appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 500);
+
+// Move NO button
+function moveNo() {
+  const btn = document.getElementById("noBtn");
+  btn.style.position = "absolute";
+  btn.style.left = Math.random() * 80 + "%";
+  btn.style.top = Math.random() * 80 + "%";
+}
+
+// YES response
+function sayYes() {
+  document.getElementById("response").innerHTML =
+  "Hehehehehe 😌 That’s supposed to be my line… but I’ll let you have this one. You just made Buba the happiest. Officially yours, Samuel 💕";
+  
+  confetti({
+    particleCount: 200,
+    spread: 100,
+    origin: { y: 0.6 }
+  });
+}
+</script>
+
+</body>
+</html>
